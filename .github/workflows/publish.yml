@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          repo-token: ${{ secrets.PUBLISH_TOKEN }}
       - uses: actions/setup-node@master
         
       - name: publish
