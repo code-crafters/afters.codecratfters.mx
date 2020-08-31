@@ -18,6 +18,8 @@ jobs:
           npm run build
           cd dist
           printf 'afters.codecrafters.mx' > CNAME | tr -d '\n\r'
+          git config --global user.name "github actions"
+          git config --global user.email "github@actions.com"
           git init
           git add -A
           git commit -m 'deploy'
