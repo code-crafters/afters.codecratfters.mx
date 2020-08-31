@@ -16,7 +16,6 @@ jobs:
         
       - name: publish
         run: |
-          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           npm install
           npm run build
           cd dist
@@ -26,4 +25,4 @@ jobs:
           git init
           git add -A
           git commit -m 'deploy'
-          git push -f https://github.com/code-crafters/afters.codecratfters.mx.git master:gh-pages 
+          git push -f https://ferflores:${{ secrets.GITHUB_TOKEN }}@github.com/code-crafters/afters.codecratfters.mx.git master:gh-pages 
