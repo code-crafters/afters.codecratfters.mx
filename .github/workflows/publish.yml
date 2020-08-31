@@ -13,7 +13,6 @@ jobs:
         with:
           persist-credentials: false
       - uses: actions/setup-node@master
-        
       - name: publish
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
