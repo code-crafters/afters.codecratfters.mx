@@ -1,0 +1,22 @@
+name: PublishSite
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: node:14.8.0-stretch
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: publish
+        run: |
+          npm run build
+          cd dist
+          printf 'afters.codecrafters.mx' > CNAME | tr -d '\n\r'
+          git init
+          git add -A
+          git commit -m 'deploy'
+          git push -f https://github.com/code-crafters/afters.codecratfters.mx.git master:gh-pages 
