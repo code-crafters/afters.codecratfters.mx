@@ -35,7 +35,8 @@ export default {
       }
   },
   async created () {
-      this.episodes = await parser.parseURL('https://anchor.fm/s/13ec49d4/podcast/rss');
+      var feed = await parser.parseURL('https://anchor.fm/s/13ec49d4/podcast/rss');
+      this.episodes = feed.items;
   }
 }
 </script>
