@@ -1,21 +1,30 @@
 <template>
   <div id="app">
-    <div class="horizontal-align container">
-        <div class="logo-container">
+    <div class="md-layout md-alignment-center">
+        <div class="logo-container md-layout-item md-size-100">
             <img class="cca-logo" alt="Vue logo" src="./assets/cca_logo.jpg">
         </div>
-        <h1 class="cca-title">Code Crafters Afters: El podcast de la comunidad</h1>
-        <h3>Lista de episodios:</h3>
-        <div class="box" v-for="episode in episodes" :key="episode.guid">
-            <div>
-                <a v-bind:href="episode.link" target="_blank"><img class="episode-image" src="./assets/cc_logo_play.jpg" /> </a>
-            </div>
-            <div class="texts">
-                <div class="episode-title">
-                    <p><a v-bind:href="episode.link" target="_blank"> {{ episode.title }}</a></p>
-                </div>
-                <div class="episode-desc">
-                    {{ episode.contentSnippet }}
+        <div class="md-layout-item md-size-100"> 
+            <h1 class="cca-title">Code Crafters Afters</h1>
+            <h3>El podcast de la comunidad</h3>
+        </div>
+        <div class="md-layout-item md-size-100 md-alignment-left">
+            <h4>Episodios:</h4>
+        </div>
+        <div class="md-layout md-alignment-center">
+            <div class="box md-elevation-3 md-layout-item md-size-70" v-for="episode in episodes" :key="episode.guid">
+                <div class="md-layout">
+                    <div class="md-layout-item md-size-20 md-xsmall-hide md-xlarge-size-15">
+                        <a v-bind:href="episode.link" target="_blank"><img class="episode-image" src="./assets/cc_logo_play.jpg" /> </a>
+                    </div>
+                    <div class="texts md-layout">
+                        <div class="episode-title md-layout-item md-size-100">
+                            <p><a v-bind:href="episode.link" target="_blank"> {{ episode.title }}</a></p>
+                        </div>
+                        <div class="episode-desc md-layout-item md-size-100 md-small-hide">
+                            {{ episode.contentSnippet }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +52,8 @@ export default {
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Roboto;
+    font-optical-sizing: 2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -55,55 +65,35 @@ export default {
     font-weight: bold;
 }
 
-.container {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-.horizontal-align {
-    text-align: center;
-    max-width: 70%;
-}
-
 .cca-logo {
-    width: 40%;
+    width: 30%;
 }
 
 .episode-image {
-    width: 15%;
     border-radius: 1rem;
-    float: left;
 }
 
 .box {
     background-color: #382a50;
     border-radius: 1rem;
     text-align: left;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 20px;
-    float: left;
-    clear: both;
-    width: 100%;
 }
 
 .texts {
     padding-left: 15px;
-    float: left;
 }
 
 .episode-title a:link {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: white;
 }
 
 .episode-desc {
-    float: left;
     font-size: 0.9rem;
     color:thistle;
-    max-width: 800px;
 }
 
 a:link,
@@ -114,26 +104,9 @@ a:active {
   color: white;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 700px) {
     .cca-logo {
         width: 70%;
     }
-    .episode-desc {
-        display: none;
-    }
 }
-
-@media (max-width: 700px) {
-    .cca-logo {
-        width: 100%;
-    }
-    .episode-image {
-        display: none;
-    }
-    .episode-desc {
-        display: none;
-    }
-}
-
-
 </style>

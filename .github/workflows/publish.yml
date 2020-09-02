@@ -18,15 +18,24 @@ jobs:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
         run: |
+          # register ssh key from secrets with repository write access
           eval "$(ssh-agent -s)"
           ssh-add - <<< "${DEPLOY_KEY}"
+
+          # install dependencies and build
           npm install
           npm run build
           cd dist
+
+          # cname file is required for the github dns
           printf 'afters.codecrafters.mx' > CNAME | tr -d '\n\r'
+
+          # configure a dummy git user
           git config --global user.name "github actions"
           git config --global user.email "github@actions.com"
           git init
           git add -A
           git commit -m 'deploy'
+          # push to the github pages branch
+
           git push -f git@github.com:code-crafters/afters.codecratfters.mx.git master:gh-pages 
